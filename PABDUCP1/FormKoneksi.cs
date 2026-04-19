@@ -31,7 +31,7 @@ namespace PABDUCP1
             catch (Exception ex)
             {
                 MessageBox.Show("Gagal: " + ex.Message);
-            }
+            }//
         }
     }
 }
