@@ -21,17 +21,29 @@ namespace PABDUCP1
             InitializeComponent();
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private void FormKoneksi_Load(object sender, EventArgs e)
+        {
+            this.Hide();
+            new FormLogin().Show();
+        }
+
+        private void btnKoneksikan_Click(object sender, EventArgs e)
         {
             try
             {
                 conn.Open();
                 MessageBox.Show("Koneksi berhasil!");
+
+                conn.Close();
+
+                FormLogin login = new FormLogin();
+                login.Show();
+                this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal: " + ex.Message);
-            }//
+                MessageBox.Show("Koneksi gagal: " + ex.Message);
+            }
         }
     }
 }
