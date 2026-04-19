@@ -87,7 +87,7 @@ namespace PABDUCP1
 
             LoadData();
             MessageBox.Show("Status berhasil diupdate!");
-        }
+        } //
 
      
     }
