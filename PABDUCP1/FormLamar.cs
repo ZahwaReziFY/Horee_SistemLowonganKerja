@@ -33,7 +33,7 @@ namespace PABDUCP1
             cmd.ExecuteNonQuery();
             conn.Close();
 
-            MessageBox.Show("Lamaran berhasil!");
+            MessageBox.Show("Lamaran berhasil!");//
         }
     }
 }
