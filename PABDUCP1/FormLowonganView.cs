@@ -31,6 +31,6 @@ namespace PABDUCP1
             conn.Close();
 
             dataGridView1.ReadOnly = true;
-        }
+        } //
     }
 }
