@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLihat = new System.Windows.Forms.Button();
             this.btnLamar = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +62,7 @@
             // 
             this.btnLamar.BackColor = System.Drawing.SystemColors.Info;
             this.btnLamar.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamar.Location = new System.Drawing.Point(302, 225);
+            this.btnLamar.Location = new System.Drawing.Point(302, 219);
             this.btnLamar.Name = "btnLamar";
             this.btnLamar.Size = new System.Drawing.Size(185, 38);
             this.btnLamar.TabIndex = 2;
@@ -69,12 +70,25 @@
             this.btnLamar.UseVisualStyleBackColor = false;
             this.btnLamar.Click += new System.EventHandler(this.btnLamar_Click);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.IndianRed;
+            this.btnLogout.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(302, 306);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(185, 38);
+            this.btnLogout.TabIndex = 3;
+            this.btnLogout.Text = "LOGOUT";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnLamar);
             this.Controls.Add(this.btnLihat);
             this.Controls.Add(this.label1);
@@ -90,5 +104,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLihat;
         private System.Windows.Forms.Button btnLamar;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

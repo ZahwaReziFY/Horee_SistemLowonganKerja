@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLowongan = new System.Windows.Forms.Button();
             this.btnAcc = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,12 +70,25 @@
             this.btnAcc.UseVisualStyleBackColor = false;
             this.btnAcc.Click += new System.EventHandler(this.btnLamaran_Click);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.IndianRed;
+            this.btnLogout.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(306, 302);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(173, 38);
+            this.btnLogout.TabIndex = 3;
+            this.btnLogout.Text = "LOGOUT";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // FormPerusahaan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnAcc);
             this.Controls.Add(this.btnLowongan);
             this.Controls.Add(this.label1);
@@ -90,5 +104,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLowongan;
         private System.Windows.Forms.Button btnAcc;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

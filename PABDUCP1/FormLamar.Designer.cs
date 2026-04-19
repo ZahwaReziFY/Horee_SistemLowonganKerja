@@ -71,9 +71,9 @@
             // 
             this.btnLamar.BackColor = System.Drawing.SystemColors.Info;
             this.btnLamar.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamar.Location = new System.Drawing.Point(319, 281);
+            this.btnLamar.Location = new System.Drawing.Point(318, 296);
             this.btnLamar.Name = "btnLamar";
-            this.btnLamar.Size = new System.Drawing.Size(75, 40);
+            this.btnLamar.Size = new System.Drawing.Size(121, 40);
             this.btnLamar.TabIndex = 3;
             this.btnLamar.Text = "DONE";
             this.btnLamar.UseVisualStyleBackColor = false;
