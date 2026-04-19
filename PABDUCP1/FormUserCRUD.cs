@@ -95,7 +95,7 @@ namespace PABDUCP1
                 txtNama.Text = row.Cells["Nama"].Value.ToString();
                 txtEmail.Text = row.Cells["Email"].Value.ToString();
                 txtPassword.Text = row.Cells["Password"].Value.ToString();
-            }
+            }//
         }
     }
 }
