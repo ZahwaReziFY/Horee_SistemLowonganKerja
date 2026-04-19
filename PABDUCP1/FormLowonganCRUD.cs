@@ -97,7 +97,7 @@ namespace PABDUCP1
                 txtPosisi.Text = row.Cells["Posisi"].Value.ToString();
                 txtDeskripsi.Text = row.Cells["Deskripsi"].Value.ToString();
                 txtLokasi.Text = row.Cells["Lokasi"].Value.ToString();
-            }
+            } //
         }
     }
 }
