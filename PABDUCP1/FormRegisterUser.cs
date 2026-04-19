@@ -82,6 +82,6 @@ namespace PABDUCP1
         private void FormRegisterUser_Load(object sender, EventArgs e)
         {
 
-        }
+        }//
     }
 }
