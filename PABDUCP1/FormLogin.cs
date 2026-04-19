@@ -82,6 +82,6 @@ namespace PABDUCP1
         {
             new FormRegisterPerusahaan().Show();
             this.Hide();
-        }
+        }//
     }
 }
