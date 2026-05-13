@@ -19,7 +19,6 @@ namespace PABDUCP1
 
         private void FormPerusahaan_Load(object sender, EventArgs e)
         {
-            // Batasan role: hanya Perusahaan yang bisa akses
             if (FormLogin.currentRole != "Perusahaan")
             {
                 MessageBox.Show("Akses ditolak!", "Error",
