@@ -21,7 +21,7 @@ namespace PABDUCP1
         public FormRegisterPerusahaan()
         {
             InitializeComponent();
-        }
+        }//
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
