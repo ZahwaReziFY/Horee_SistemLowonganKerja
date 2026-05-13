@@ -25,12 +25,11 @@ namespace PABDUCP1
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            // Catatan: tabel Perusahaan di SQL memakai kolom 'Alamat' (bukan Jalan+Kabupaten)
             // Gunakan 1 TextBox untuk Alamat lengkap di desainer form
             string nama = txtNama.Text.Trim();
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
-            string alamat = txtAlamat.Text.Trim(); // ganti txtJalan -> txtAlamat di designer
+            string alamat = txtAlamat.Text.Trim(); 
 
             // ── Validasi sisi C# ──────────────────────────────────────────
 
