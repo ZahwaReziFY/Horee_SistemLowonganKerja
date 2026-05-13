@@ -19,7 +19,6 @@ namespace PABDUCP1
 
         private void FormUser_Load(object sender, EventArgs e)
         {
-            // Pastikan yang masuk adalah User
             if (FormLogin.currentRole != "User")
             {
                 MessageBox.Show("Akses ditolak!", "Error",
