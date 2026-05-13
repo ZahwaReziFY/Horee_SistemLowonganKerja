@@ -35,7 +35,7 @@ namespace PABDUCP1
                 MessageBox.Show("Username/Email dan Password harus diisi!", "Peringatan",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+            }//
 
             // Query UNION: cek User (Email) dan Perusahaan (Email)
             // Admin dihilangkan sesuai permintaan
