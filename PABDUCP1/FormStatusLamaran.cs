@@ -70,7 +70,7 @@ namespace PABDUCP1
                     dataGridView1.AllowUserToAddRows = false;
                     dataGridView1.AllowUserToDeleteRows = false;
 
-                    // Beri warna status
+                    
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         if (row.IsNewRow) continue;
