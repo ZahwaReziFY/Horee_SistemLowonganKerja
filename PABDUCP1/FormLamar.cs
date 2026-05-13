@@ -90,7 +90,6 @@ namespace PABDUCP1
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-                // Simpan ID ke variabel (bukan ke TextBox)
                 selectedIDLowongan = Convert.ToInt32(row.Cells["ID_Lowongan"].Value);
 
                 // Tampilkan yang penting-penting saja ke user
