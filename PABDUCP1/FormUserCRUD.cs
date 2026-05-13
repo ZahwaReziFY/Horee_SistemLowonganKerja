@@ -49,7 +49,7 @@ namespace PABDUCP1
             cmd.ExecuteNonQuery();
             conn.Close();
             LoadData();
-        }
+        }//
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
