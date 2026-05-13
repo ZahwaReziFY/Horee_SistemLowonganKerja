@@ -89,7 +89,6 @@ namespace PABDUCP1
                     "INSERT INTO Lowongan (ID_Perusahaan, Posisi, Deskripsi, Lokasi) VALUES (@p, @j, @d, @l)",
                     conn))
                 {
-                    // ID_Perusahaan otomatis dari session — perusahaan lain tidak bisa insert ke slot ini
                     cmd.Parameters.AddWithValue("@p", FormLogin.currentPerusahaanID);
                     cmd.Parameters.AddWithValue("@j", txtPosisi.Text.Trim());
                     cmd.Parameters.AddWithValue("@d", txtDeskripsi.Text.Trim());
