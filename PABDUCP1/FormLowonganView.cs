@@ -24,7 +24,7 @@ namespace PABDUCP1
         private void FormLowonganView_Load(object sender, EventArgs e)
         {
             LoadData();
-        }
+        }//
 
         void LoadData()
         {
