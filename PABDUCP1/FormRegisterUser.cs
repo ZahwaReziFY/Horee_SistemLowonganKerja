@@ -32,7 +32,7 @@ namespace PABDUCP1
             string kabupaten = txtKabupaten.Text.Trim();
 
 
-            // 1. Semua wajib diisi
+           
             if (nama == "" || email == "" || password == "" ||
                 jalan == "" || desa == "" || kabupaten == "")
             {
