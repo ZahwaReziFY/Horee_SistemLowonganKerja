@@ -67,7 +67,6 @@ namespace PABDUCP1
 
                     dataGridView1.DataSource = dt;
 
-                    // Pengaturan GridView agar rapi
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     if (dataGridView1.Columns.Contains("ID_Lowongan"))
                         dataGridView1.Columns["ID_Lowongan"].Visible = false;
