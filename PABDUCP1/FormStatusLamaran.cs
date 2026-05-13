@@ -11,7 +11,6 @@ using System.Data.SqlClient;
 
 namespace PABDUCP1
 {
-    // Form baru: User melihat status lamaran MILIKNYA SENDIRI saja
     public partial class FormStatusLamaran : Form
     {
         private readonly string connStr =
