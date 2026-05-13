@@ -20,7 +20,7 @@ namespace PABDUCP1
         public FormRegisterUser()
         {
             InitializeComponent();
-        }
+        }//
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -31,7 +31,6 @@ namespace PABDUCP1
             string desa = txtDesa.Text.Trim();
             string kabupaten = txtKabupaten.Text.Trim();
 
-            // ── Validasi sisi C# ──────────────────────────────────────────
 
             // 1. Semua wajib diisi
             if (nama == "" || email == "" || password == "" ||
