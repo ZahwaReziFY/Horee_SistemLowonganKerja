@@ -16,7 +16,7 @@ namespace PABDUCP1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormKoneksi());
+            Application.Run(new FormLogin());
         }
     }
 }

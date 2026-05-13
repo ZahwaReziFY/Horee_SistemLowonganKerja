@@ -17,6 +17,20 @@ namespace PABDUCP1
             InitializeComponent();
         }
 
+        private void FormPerusahaan_Load(object sender, EventArgs e)
+        {
+            // Batasan role: hanya Perusahaan yang bisa akses
+            if (FormLogin.currentRole != "Perusahaan")
+            {
+                MessageBox.Show("Akses ditolak!", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            this.Text = "Dashboard Perusahaan";
+        }
+
         private void btnLowongan_Click(object sender, EventArgs e)
         {
             new FormLowonganCRUD().Show();
@@ -29,8 +43,10 @@ namespace PABDUCP1
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            FormLogin.currentPerusahaanID = 0;
+            FormLogin.currentRole = "";
             new FormLogin().Show();
             this.Close();
-        }//
+        }
     }
 }

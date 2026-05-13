@@ -50,13 +50,13 @@
             this.Registrasi.AutoSize = true;
             this.Registrasi.BackColor = System.Drawing.Color.LavenderBlush;
             this.Registrasi.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Registrasi.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Registrasi.ForeColor = System.Drawing.Color.SkyBlue;
-            this.Registrasi.Location = new System.Drawing.Point(320, 11);
+            this.Registrasi.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Registrasi.ForeColor = System.Drawing.Color.Thistle;
+            this.Registrasi.Location = new System.Drawing.Point(321, 28);
             this.Registrasi.Name = "Registrasi";
-            this.Registrasi.Size = new System.Drawing.Size(132, 70);
+            this.Registrasi.Size = new System.Drawing.Size(110, 30);
             this.Registrasi.TabIndex = 0;
-            this.Registrasi.Text = "Registrasi";
+            this.Registrasi.Text = "REGIST";
             // 
             // label2
             // 
@@ -79,7 +79,7 @@
             this.label3.Size = new System.Drawing.Size(56, 44);
             this.label3.TabIndex = 2;
             this.label3.Text = "Email";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+           
             // 
             // label4
             // 
@@ -140,7 +140,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(278, 22);
             this.txtEmail.TabIndex = 8;
-            this.txtEmail.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+           
             // 
             // txtPassword
             // 
@@ -173,7 +173,7 @@
             this.txtKabupaten.Name = "txtKabupaten";
             this.txtKabupaten.Size = new System.Drawing.Size(278, 22);
             this.txtKabupaten.TabIndex = 12;
-            this.txtKabupaten.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            
             // 
             // btnRegister
             // 
@@ -222,7 +222,7 @@
             this.Controls.Add(this.Registrasi);
             this.Name = "FormRegisterUser";
             this.Text = "FormRegisterUser";
-            this.Load += new System.EventHandler(this.FormRegisterUser_Load);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

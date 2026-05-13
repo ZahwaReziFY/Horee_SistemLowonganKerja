@@ -89,6 +89,8 @@
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.Lavender;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.DarkMagenta;
             this.btnSearch.Location = new System.Drawing.Point(93, 184);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);

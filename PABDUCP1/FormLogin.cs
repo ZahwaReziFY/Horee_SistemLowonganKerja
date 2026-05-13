@@ -13,12 +13,12 @@ namespace PABDUCP1
 {
     public partial class FormLogin : Form
     {
-        SqlConnection conn = new SqlConnection(
-        "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True");
+        private readonly string connStr =
+            "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
 
-        public static int currentUserID;
-        public static int currentPerusahaanID;
-        public static string currentRole;
+        public static int currentUserID = 0;
+        public static int currentPerusahaanID = 0;
+        public static string currentRole = "";
 
         public FormLogin()
         {
@@ -27,49 +27,73 @@ namespace PABDUCP1
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            conn.Open();
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text;
 
+            if (username == "" || password == "")
+            {
+                MessageBox.Show("Username/Email dan Password harus diisi!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Query UNION: cek User (Email) dan Perusahaan (Email)
+            // Admin dihilangkan sesuai permintaan
             string query = @"
-            SELECT ID_User as ID, 'User' as Role FROM Users WHERE Email=@u AND Password=@p
-            UNION
-            SELECT ID_Perusahaan, 'Perusahaan' FROM Perusahaan WHERE Email=@u AND Password=@p
-            UNION
-            SELECT ID_Admin, 'Admin' FROM Admin WHERE Username=@u AND Password=@p";
+                SELECT ID_User AS ID, 'User' AS Role
+                FROM Users
+                WHERE Email = @u AND Password = @p
+ 
+                UNION
+ 
+                SELECT ID_Perusahaan, 'Perusahaan'
+                FROM Perusahaan
+                WHERE Email = @u AND Password = @p";
 
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@u", txtUsername.Text);
-            cmd.Parameters.AddWithValue("@p", txtPassword.Text);
-
-            SqlDataReader rd = cmd.ExecuteReader();
-
-            if (rd.Read())
+            try
             {
-                currentRole = rd["Role"].ToString();
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@u", username);
+                    cmd.Parameters.AddWithValue("@p", password);
 
-                if (currentRole == "User")
-                {
-                    currentUserID = Convert.ToInt32(rd["ID"]);
-                    new FormUser().Show();
-                }
-                else if (currentRole == "Perusahaan")
-                {
-                    currentPerusahaanID = Convert.ToInt32(rd["ID"]);
-                    new FormPerusahaan().Show();
-                }
-                else
-                {
-                    new FormAdmin().Show();
-                }
+                    conn.Open();
+                    SqlDataReader rd = cmd.ExecuteReader();
 
-                this.Hide();
+                    if (rd.Read())
+                    {
+                        currentRole = rd["Role"].ToString();
+
+                        if (currentRole == "User")
+                        {
+                            currentUserID = Convert.ToInt32(rd["ID"]);
+                            currentPerusahaanID = 0;
+                            rd.Close();
+                            new FormUser().Show();
+                        }
+                        else if (currentRole == "Perusahaan")
+                        {
+                            currentPerusahaanID = Convert.ToInt32(rd["ID"]);
+                            currentUserID = 0;
+                            rd.Close();
+                            new FormPerusahaan().Show();
+                        }
+
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email atau Password salah!", "Login Gagal",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Login gagal!");
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            conn.Close();
-
         }
 
         private void btnRegisterUser_Click(object sender, EventArgs e)
@@ -82,6 +106,6 @@ namespace PABDUCP1
         {
             new FormRegisterPerusahaan().Show();
             this.Hide();
-        }//
+        }
     }
 }

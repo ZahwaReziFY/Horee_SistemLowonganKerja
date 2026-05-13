@@ -13,8 +13,8 @@ namespace PABDUCP1
 {
     public partial class FormLowonganView : Form
     {
-        SqlConnection conn = new SqlConnection(
-        "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True");
+        private readonly string connStr =
+            "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
 
         public FormLowonganView()
         {
@@ -23,14 +23,30 @@ namespace PABDUCP1
 
         private void FormLowonganView_Load(object sender, EventArgs e)
         {
-            conn.Open();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Lowongan", conn);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-            conn.Close();
+            LoadData();
+        }
 
-            dataGridView1.ReadOnly = true;
-        } //
+        void LoadData()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlDataAdapter da = new SqlDataAdapter(
+                    "SELECT * FROM vw_LowonganTersedia", conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                    dataGridView1.ReadOnly = true;
+                    dataGridView1.AllowUserToAddRows = false;
+                    dataGridView1.AllowUserToDeleteRows = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal memuat data: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

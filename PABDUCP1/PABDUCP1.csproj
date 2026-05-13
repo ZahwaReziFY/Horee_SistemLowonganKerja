@@ -46,18 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormAdmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdmin.Designer.cs">
-      <DependentUpon>FormAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormKoneksi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormKoneksi.Designer.cs">
-      <DependentUpon>FormKoneksi.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormLamar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +94,12 @@
     <Compile Include="FormRegisterUser.Designer.cs">
       <DependentUpon>FormRegisterUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStatusLamaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStatusLamaran.Designer.cs">
+      <DependentUpon>FormStatusLamaran.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,12 +114,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormAdmin.resx">
-      <DependentUpon>FormAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormKoneksi.resx">
-      <DependentUpon>FormKoneksi.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormKelolaLamaran.resx">
       <DependentUpon>FormKelolaLamaran.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegisterUser.resx">
       <DependentUpon>FormRegisterUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatusLamaran.resx">
+      <DependentUpon>FormStatusLamaran.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUser.resx">
       <DependentUpon>FormUser.cs</DependentUpon>

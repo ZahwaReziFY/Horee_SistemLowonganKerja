@@ -163,9 +163,10 @@
             // 
             // txtLokasi
             // 
+            this.txtLokasi.BackColor = System.Drawing.Color.Azure;
             this.txtLokasi.Location = new System.Drawing.Point(181, 160);
             this.txtLokasi.Name = "txtLokasi";
-            this.txtLokasi.Size = new System.Drawing.Size(100, 22);
+            this.txtLokasi.Size = new System.Drawing.Size(160, 22);
             this.txtLokasi.TabIndex = 11;
             // 
             // label4

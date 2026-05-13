@@ -36,7 +36,7 @@
             this.txtNama = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtJalan = new System.Windows.Forms.TextBox();
+            this.txtAlamat = new System.Windows.Forms.TextBox();
             this.txtKabupaten = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -48,11 +48,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LavenderBlush;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(353, 29);
+            this.label1.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Thistle;
+            this.label1.Location = new System.Drawing.Point(327, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 46);
+            this.label1.Size = new System.Drawing.Size(110, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "REGIST";
             // 
@@ -124,13 +124,13 @@
             this.txtPassword.Size = new System.Drawing.Size(268, 22);
             this.txtPassword.TabIndex = 7;
             // 
-            // txtJalan
+            // txtAlamat
             // 
-            this.txtJalan.BackColor = System.Drawing.Color.Azure;
-            this.txtJalan.Location = new System.Drawing.Point(273, 213);
-            this.txtJalan.Name = "txtJalan";
-            this.txtJalan.Size = new System.Drawing.Size(268, 22);
-            this.txtJalan.TabIndex = 8;
+            this.txtAlamat.BackColor = System.Drawing.Color.Azure;
+            this.txtAlamat.Location = new System.Drawing.Point(273, 213);
+            this.txtAlamat.Name = "txtAlamat";
+            this.txtAlamat.Size = new System.Drawing.Size(268, 22);
+            this.txtAlamat.TabIndex = 8;
             // 
             // txtKabupaten
             // 
@@ -185,7 +185,7 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtKabupaten);
-            this.Controls.Add(this.txtJalan);
+            this.Controls.Add(this.txtAlamat);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtNama);
@@ -211,7 +211,7 @@
         private System.Windows.Forms.TextBox txtNama;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtJalan;
+        private System.Windows.Forms.TextBox txtAlamat;
         private System.Windows.Forms.TextBox txtKabupaten;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnRegister;

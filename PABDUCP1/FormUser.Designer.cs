@@ -32,6 +32,7 @@
             this.btnLihat = new System.Windows.Forms.Button();
             this.btnLamar = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnStatusLamaran = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -40,6 +41,7 @@
             this.label1.BackColor = System.Drawing.Color.LavenderBlush;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
             this.label1.Location = new System.Drawing.Point(267, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(256, 30);
@@ -74,7 +76,7 @@
             // 
             this.btnLogout.BackColor = System.Drawing.Color.IndianRed;
             this.btnLogout.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(302, 306);
+            this.btnLogout.Location = new System.Drawing.Point(302, 350);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(185, 38);
             this.btnLogout.TabIndex = 3;
@@ -82,18 +84,33 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnStatusLamaran
+            // 
+            this.btnStatusLamaran.BackColor = System.Drawing.SystemColors.Info;
+            this.btnStatusLamaran.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatusLamaran.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnStatusLamaran.Location = new System.Drawing.Point(302, 276);
+            this.btnStatusLamaran.Name = "btnStatusLamaran";
+            this.btnStatusLamaran.Size = new System.Drawing.Size(185, 35);
+            this.btnStatusLamaran.TabIndex = 4;
+            this.btnStatusLamaran.Text = "Status Lamaran";
+            this.btnStatusLamaran.UseVisualStyleBackColor = false;
+            this.btnStatusLamaran.Click += new System.EventHandler(this.btnStatusLamaran_Click);
+            // 
             // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnStatusLamaran);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnLamar);
             this.Controls.Add(this.btnLihat);
             this.Controls.Add(this.label1);
             this.Name = "FormUser";
             this.Text = "FormUser";
+            this.Load += new System.EventHandler(this.FormUser_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +122,6 @@
         private System.Windows.Forms.Button btnLihat;
         private System.Windows.Forms.Button btnLamar;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnStatusLamaran;
     }
 }
