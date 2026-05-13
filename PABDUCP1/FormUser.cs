@@ -40,7 +40,6 @@ namespace PABDUCP1
             new FormLamar().Show();
         }
 
-        // Tombol untuk melihat status lamaran milik user ini
         private void btnStatusLamaran_Click(object sender, EventArgs e)
         {
             new FormStatusLamaran().Show();
