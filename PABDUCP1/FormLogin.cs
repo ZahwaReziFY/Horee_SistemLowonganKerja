@@ -38,7 +38,6 @@ namespace PABDUCP1
             }//
 
             // Query UNION: cek User (Email) dan Perusahaan (Email)
-            // Admin dihilangkan sesuai permintaan
             string query = @"
                 SELECT ID_User AS ID, 'User' AS Role
                 FROM Users
