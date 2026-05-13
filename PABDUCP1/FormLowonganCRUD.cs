@@ -123,7 +123,6 @@ namespace PABDUCP1
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
                 using (SqlCommand cmd = new SqlCommand(
-                    // Tambah WHERE ID_Perusahaan = @pid agar perusahaan A tidak bisa edit milik B
                     "UPDATE Lowongan SET Posisi=@j, Deskripsi=@d, Lokasi=@l WHERE ID_Lowongan=@id AND ID_Perusahaan=@pid",
                     conn))
                 {
