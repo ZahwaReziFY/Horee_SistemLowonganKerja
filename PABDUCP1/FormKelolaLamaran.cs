@@ -80,7 +80,6 @@ namespace PABDUCP1
             }
         }//
 
-        // Tambahkan Event ini di GridView (lewat tab petir/events di Properties)
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
