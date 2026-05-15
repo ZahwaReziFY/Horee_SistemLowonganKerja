@@ -96,9 +96,9 @@
             this.label5.ForeColor = System.Drawing.Color.DarkMagenta;
             this.label5.Location = new System.Drawing.Point(158, 207);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 44);
+            this.label5.Size = new System.Drawing.Size(52, 44);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Alamat";
+            this.label5.Text = "Desa";
             // 
             // txtNama
             // 

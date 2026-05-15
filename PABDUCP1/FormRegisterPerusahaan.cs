@@ -25,15 +25,11 @@ namespace PABDUCP1
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            // Gunakan 1 TextBox untuk Alamat lengkap di desainer form
             string nama = txtNama.Text.Trim();
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
             string alamat = txtAlamat.Text.Trim(); 
 
-            // ── Validasi sisi C# ──────────────────────────────────────────
-
-            // 1. Semua wajib diisi
             if (nama == "" || email == "" || password == "" || alamat == "")
             {
                 MessageBox.Show("Semua kolom harus diisi!", "Peringatan",
@@ -41,7 +37,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 2. Nama Perusahaan: harus ada huruf (tidak boleh angka saja)
             if (!Regex.IsMatch(nama, @"[a-zA-Z]"))
             {
                 MessageBox.Show("Nama Perusahaan tidak valid!", "Validasi",
@@ -49,7 +44,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 3. Email: format valid dengan '@'
             if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Format email tidak valid! Harus mengandung '@'.", "Validasi",
@@ -57,7 +51,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 4. Password minimal 8 karakter
             if (password.Length < 8)
             {
                 MessageBox.Show("Password minimal 8 karakter!", "Validasi",
@@ -65,7 +58,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 5. Alamat tidak boleh angka saja
             if (!Regex.IsMatch(alamat, @"[a-zA-Z]"))
             {
                 MessageBox.Show("Alamat tidak valid! Tidak boleh angka saja.", "Validasi",
@@ -73,7 +65,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // ── Panggil Stored Procedure sp_RegisterPerusahaan ────────────
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
