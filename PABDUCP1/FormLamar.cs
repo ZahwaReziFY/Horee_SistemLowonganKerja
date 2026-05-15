@@ -11,12 +11,18 @@ using System.Data.SqlClient; //
 
 namespace PABDUCP1
 {
+    // ================================================================
+    // FormLamar — User melamar lowongan
+    // Fitur: DataGridView + BindingSource + BindingNavigator
+    //        Klik baris → isi textbox otomatis
+    // ================================================================
     public partial class FormLamar : Form
     {
         private readonly string connStr =
             "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
 
         private int selectedIDLowongan = 0;
+        private BindingSource bindingSource = new BindingSource();
 
         public FormLamar()
         {
@@ -33,77 +39,83 @@ namespace PABDUCP1
                 return;
             }
 
-            // Hapus atau beri komentar pada baris yang error ini:
-            // txtIDUser.Text = FormLogin.currentUserID.ToString(); 
+            // Hubungkan Navigator ke BindingSource
+            bindingNavigator1.BindingSource = bindingSource;
+            if (bindingNavigatorAddNewItem != null) bindingNavigatorAddNewItem.Enabled = false;
+            if (bindingNavigatorDeleteItem != null) bindingNavigatorDeleteItem.Enabled = false;
+
+            // Sync textbox saat navigator bergerak
+            bindingSource.CurrentChanged += BindingSource_CurrentChanged;
 
             LoadLowongan();
         }
 
+        // ── Load lowongan yang belum dilamar user ini ──────────────────
         void LoadLowongan()
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(
+                    @"SELECT LW.ID_Lowongan, LW.Posisi, P.Nama_Perusahaan, LW.Lokasi, LW.Deskripsi
+                      FROM Lowongan LW
+                      JOIN Perusahaan P ON LW.ID_Perusahaan = P.ID_Perusahaan
+                      WHERE LW.ID_Lowongan NOT IN (
+                          SELECT ID_Lowongan FROM Lamaran WHERE ID_User = @uid
+                      )", conn))
                 {
-                    // Query ini mengambil lowongan yang BELUM dilamar oleh user ini
-                    string query = @"
-                SELECT LW.ID_Lowongan, 
-                       LW.Posisi, 
-                       P.Nama_Perusahaan,
-                       LW.Lokasi
-                FROM Lowongan LW
-                JOIN Perusahaan P ON LW.ID_Perusahaan = P.ID_Perusahaan
-                WHERE LW.ID_Lowongan NOT IN (
-                    SELECT ID_Lowongan FROM Lamaran 
-                    WHERE ID_User = @uid
-                )";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@uid", FormLogin.currentUserID);
-
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dataGridView1.DataSource = dt;
-
+                    bindingSource.DataSource = dt;
+                    dataGridView1.DataSource = bindingSource;
+                    dataGridView1.ReadOnly = true;
+                    dataGridView1.AllowUserToAddRows = false;
+                    dataGridView1.AllowUserToDeleteRows = false;
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
                     if (dataGridView1.Columns.Contains("ID_Lowongan"))
                         dataGridView1.Columns["ID_Lowongan"].Visible = false;
+
+                    // Reset pilihan
+                    selectedIDLowongan = 0;
+                    ClearFields();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal memuat data: " + ex.Message);
+                MessageBox.Show("Gagal memuat lowongan: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnTampilkan_Click(object sender, EventArgs e)
+        // ── Sync textbox saat Navigator bergerak ───────────────────────
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            LoadLowongan();
-            MessageBox.Show("Data lowongan terbaru telah dimuat.", "Info");
+            if (bindingSource.Current == null) return;
+            DataRowView row = (DataRowView)bindingSource.Current;
+            selectedIDLowongan = Convert.ToInt32(row["ID_Lowongan"]);
+            txtPosisi.Text = row["Posisi"]?.ToString();
+            txtPerusahaan.Text = row["Nama_Perusahaan"]?.ToString();
+            txtLokasi.Text = row["Lokasi"]?.ToString();
         }
 
+        // ── Klik baris grid → sync posisi Navigator ────────────────────
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-                selectedIDLowongan = Convert.ToInt32(row.Cells["ID_Lowongan"].Value);
-
-                // Tampilkan yang penting-penting saja ke user
-                txtPosisi.Text = row.Cells["Posisi"].Value.ToString();
-                txtPerusahaan.Text = row.Cells["Nama_Perusahaan"].Value.ToString();
-                txtLokasi.Text = row.Cells["Lokasi"].Value.ToString();
-            }
+            if (e.RowIndex < 0) return;
+            bindingSource.Position = e.RowIndex; // trigger CurrentChanged otomatis
         }
 
+        // ── LAMAR via sp_InsertLamaran ──────────────────────────────────
         private void btnLamar_Click(object sender, EventArgs e)
         {
             if (selectedIDLowongan == 0)
             {
-                MessageBox.Show("Pilih lowongan dulu dari tabel!");
+                MessageBox.Show("Pilih lowongan dari tabel dulu!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -113,23 +125,40 @@ namespace PABDUCP1
                 using (SqlCommand cmd = new SqlCommand("sp_InsertLamaran", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Ambil langsung dari variabel Global di FormLogin dan variabel selected
                     cmd.Parameters.AddWithValue("@ID_User", FormLogin.currentUserID);
                     cmd.Parameters.AddWithValue("@ID_Lowongan", selectedIDLowongan);
-
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    conn.Close();
                 }
-
-                MessageBox.Show("Lamaran Berhasil!");
+                MessageBox.Show("Lamaran berhasil dikirim! Status: Pending.", "Sukses",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Gagal Melamar",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // ── Refresh lowongan ───────────────────────────────────────────
+        private void btnTampilkan_Click(object sender, EventArgs e)
+        {
+            LoadLowongan();
+            MessageBox.Show("Data lowongan terbaru telah dimuat.", "Info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        void ClearFields()
+        {
+            txtPosisi.Text = "";
+            txtPerusahaan.Text = "";
+            txtLokasi.Text = "";
         }
     }
 }

@@ -11,22 +11,24 @@ using System.Windows.Forms;//
 
 namespace PABDUCP1
 {
+    // ================================================================
+    // FormKelolaLamaran — Perusahaan kelola lamaran masuk
+    // Fitur: BindingSource + BindingNavigator, warna status, SP update
+    // ================================================================
     public partial class FormKelolaLamaran : Form
     {
         private readonly string connStr =
             "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
 
+        private BindingSource bindingSource = new BindingSource();
+
         public FormKelolaLamaran()
         {
             InitializeComponent();
-
-            // TAMBAHKAN BARIS INI:
-            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
         }
 
         private void FormKelolaLamaran_Load(object sender, EventArgs e)
         {
-            // Batasan role
             if (FormLogin.currentRole != "Perusahaan")
             {
                 MessageBox.Show("Akses ditolak!", "Error",
@@ -36,90 +38,85 @@ namespace PABDUCP1
             }
 
             this.Text = "Kelola Lamaran";
+
+            // Hubungkan Navigator ke BindingSource
+            bindingNavigator1.BindingSource = bindingSource;
+            if (bindingNavigatorAddNewItem != null) bindingNavigatorAddNewItem.Enabled = false;
+            if (bindingNavigatorDeleteItem != null) bindingNavigatorDeleteItem.Enabled = false;
+
+            // Sync txtIDLamaran saat navigator bergerak
+            bindingSource.CurrentChanged += BindingSource_CurrentChanged;
+
             LoadData();
         }
 
+        // ── Load dari VIEW vw_SemuaLamaran ─────────────────────────────
         void LoadData()
         {
             try
             {
-                string query = @"
-            SELECT 
-                L.ID_Lamaran, 
-                U.Nama AS Nama_Pelamar, 
-                U.Email AS Email_Pelamar, 
-                LW.Posisi, 
-                L.TanggalLamaran, 
-                L.Status
-            FROM Lamaran L
-            JOIN Users U ON L.ID_User = U.ID_User
-            JOIN Lowongan LW ON L.ID_Lowongan = LW.ID_Lowongan
-            WHERE LW.ID_Perusahaan = @pid
-            ORDER BY L.TanggalLamaran DESC";
-
                 using (SqlConnection conn = new SqlConnection(connStr))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(
+                    "SELECT ID_Lamaran, Nama_Pelamar, Email_Pelamar, Posisi, TanggalLamaran, Status " +
+                    "FROM vw_SemuaLamaran WHERE ID_Perusahaan = @pid ORDER BY TanggalLamaran DESC", conn))
                 {
-                    // PASTIKAN FormLogin.currentPerusahaanID tidak 0
                     cmd.Parameters.AddWithValue("@pid", FormLogin.currentPerusahaanID);
-
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dataGridView1.DataSource = dt;
+                    bindingSource.DataSource = dt;
+                    dataGridView1.DataSource = bindingSource;
+                    dataGridView1.ReadOnly = true;
+                    dataGridView1.AllowUserToAddRows = false;
+                    dataGridView1.AllowUserToDeleteRows = false;
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    // Sembunyikan ID agar rapi tapi tetap bisa diambil nilainya
                     if (dataGridView1.Columns.Contains("ID_Lamaran"))
                         dataGridView1.Columns["ID_Lamaran"].Visible = false;
+
+                    WarnaiStatus();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal memuat data: " + ex.Message);
+                MessageBox.Show("Gagal memuat data: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }//
+        }
 
-        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        // ── Warnai baris berdasarkan Status ───────────────────────────
+        void WarnaiStatus()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (row.Cells["Status"].Value != null)
-                {
-                    string status = row.Cells["Status"].Value.ToString();
-                    if (status == "Diterima")
-                        row.DefaultCellStyle.BackColor = Color.LightGreen;
-                    else if (status == "Ditolak")
-                        row.DefaultCellStyle.BackColor = Color.LightCoral;
-                    else
-                        row.DefaultCellStyle.BackColor = Color.LightYellow;
-                }
+                if (row.IsNewRow || row.Cells["Status"].Value == null) continue;
+                string status = row.Cells["Status"].Value.ToString();
+                row.DefaultCellStyle.BackColor = status == "Diterima" ? Color.LightGreen
+                                               : status == "Ditolak" ? Color.LightCoral
+                                               : Color.LightYellow;
             }
         }
 
+        // ── Sync txtIDLamaran saat Navigator bergerak ──────────────────
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            if (bindingSource.Current == null) return;
+            DataRowView row = (DataRowView)bindingSource.Current;
+            txtIDLamaran.Text = row["ID_Lamaran"]?.ToString();
+        }
+
+        // ── Klik baris grid ────────────────────────────────────────────
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                txtIDLamaran.Text = row.Cells["ID_Lamaran"].Value?.ToString();
-            }
+            if (e.RowIndex < 0) return;
+            bindingSource.Position = e.RowIndex; // sync Navigator
         }
 
-        private void btnAcc_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("Diterima");
-        }
-
-        private void btnTolak_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("Ditolak");
-        }
-
-        private void btnPending_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("Pending");
-        }
+        // ── Tombol ACC / Tolak / Pending ──────────────────────────────
+        private void btnAcc_Click(object sender, EventArgs e) => UpdateStatus("Diterima");
+        private void btnTolak_Click(object sender, EventArgs e) => UpdateStatus("Ditolak");
+        private void btnPending_Click(object sender, EventArgs e) => UpdateStatus("Pending");
 
         void UpdateStatus(string status)
         {
@@ -138,32 +135,28 @@ namespace PABDUCP1
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID_Lamaran", Convert.ToInt32(txtIDLamaran.Text));
                     cmd.Parameters.AddWithValue("@StatusBaru", status);
-
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
-
-                MessageBox.Show("Status lamaran berhasil diubah ke: " + status, "Sukses",
+                MessageBox.Show("Status berhasil diubah ke: " + status, "Sukses",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
                 txtIDLamaran.Text = "";
             }
             catch (SqlException ex)
             {
-                // Tangkap RAISERROR dari SP (misal: tidak bisa kembalikan ke Pending)
                 MessageBox.Show(ex.Message, "Gagal Update Status",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e) => LoadData();
+
+        private void FormKelolaLamaran_Load_1(object sender, EventArgs e)
         {
-            LoadData();
+            // TODO: This line of code loads data into the 'sistemLowonganDBDataSet1.Lamaran' table. You can move, or remove it, as needed.
+            this.lamaranTableAdapter.Fill(this.sistemLowonganDBDataSet1.Lamaran);
+
         }
     }
 }

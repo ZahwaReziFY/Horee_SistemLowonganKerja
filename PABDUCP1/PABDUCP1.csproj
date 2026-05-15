@@ -114,6 +114,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SistemLowonganDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemLowonganDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SistemLowonganDBDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemLowonganDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SistemLowonganDBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemLowonganDBDataSet2.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormKelolaLamaran.resx">
       <DependentUpon>FormKelolaLamaran.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +181,39 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SistemLowonganDBDataSet.xsc">
+      <DependentUpon>SistemLowonganDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemLowonganDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemLowonganDBDataSet.xss">
+      <DependentUpon>SistemLowonganDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet1.xsc">
+      <DependentUpon>SistemLowonganDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemLowonganDBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemLowonganDBDataSet1.xss">
+      <DependentUpon>SistemLowonganDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet2.xsc">
+      <DependentUpon>SistemLowonganDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemLowonganDBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemLowonganDBDataSet2.xss">
+      <DependentUpon>SistemLowonganDBDataSet2.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
