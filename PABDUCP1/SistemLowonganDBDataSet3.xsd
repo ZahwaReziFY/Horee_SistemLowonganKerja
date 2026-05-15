@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SistemLowonganDBDataSet3" targetNamespace="http://tempuri.org/SistemLowonganDBDataSet3.xsd" xmlns:mstns="http://tempuri.org/SistemLowonganDBDataSet3.xsd" xmlns="http://tempuri.org/SistemLowonganDBDataSet3.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SistemLowonganDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SistemLowonganDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.PABDUCP1.Properties.Settings.GlobalReference.Default.SistemLowonganDBConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_LowonganTersediaTableAdapter" GeneratorDataComponentClassName="vw_LowonganTersediaTableAdapter" Name="vw_LowonganTersedia" UserDataComponentName="vw_LowonganTersediaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SistemLowonganDBConnectionString (Settings)" DbObjectName="SistemLowonganDB.dbo.vw_LowonganTersedia" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID_Lowongan, Posisi, Nama_Perusahaan, Lokasi, Deskripsi, ID_Perusahaan, Tampilan FROM dbo.vw_LowonganTersedia</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID_Lowongan" DataSetColumn="ID_Lowongan" />
+              <Mapping SourceColumn="Posisi" DataSetColumn="Posisi" />
+              <Mapping SourceColumn="Nama_Perusahaan" DataSetColumn="Nama_Perusahaan" />
+              <Mapping SourceColumn="Lokasi" DataSetColumn="Lokasi" />
+              <Mapping SourceColumn="Deskripsi" DataSetColumn="Deskripsi" />
+              <Mapping SourceColumn="ID_Perusahaan" DataSetColumn="ID_Perusahaan" />
+              <Mapping SourceColumn="Tampilan" DataSetColumn="Tampilan" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SistemLowonganDBDataSet3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="SistemLowonganDBDataSet3" msprop:Generator_DataSetName="SistemLowonganDBDataSet3">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_LowonganTersedia" msprop:Generator_RowEvHandlerName="vw_LowonganTersediaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_LowonganTersediaRowDeleted" msprop:Generator_RowDeletingName="vw_LowonganTersediaRowDeleting" msprop:Generator_RowEvArgName="vw_LowonganTersediaRowChangeEvent" msprop:Generator_TablePropName="vw_LowonganTersedia" msprop:Generator_RowChangedName="vw_LowonganTersediaRowChanged" msprop:Generator_RowChangingName="vw_LowonganTersediaRowChanging" msprop:Generator_TableClassName="vw_LowonganTersediaDataTable" msprop:Generator_RowClassName="vw_LowonganTersediaRow" msprop:Generator_TableVarName="tablevw_LowonganTersedia" msprop:Generator_UserTableName="vw_LowonganTersedia">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_Lowongan" msprop:Generator_ColumnPropNameInRow="ID_Lowongan" msprop:Generator_ColumnPropNameInTable="ID_LowonganColumn" msprop:Generator_ColumnVarNameInTable="columnID_Lowongan" msprop:Generator_UserColumnName="ID_Lowongan" type="xs:int" />
+              <xs:element name="Posisi" msprop:Generator_ColumnPropNameInRow="Posisi" msprop:Generator_ColumnPropNameInTable="PosisiColumn" msprop:Generator_ColumnVarNameInTable="columnPosisi" msprop:Generator_UserColumnName="Posisi">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nama_Perusahaan" msprop:Generator_ColumnPropNameInRow="Nama_Perusahaan" msprop:Generator_ColumnPropNameInTable="Nama_PerusahaanColumn" msprop:Generator_ColumnVarNameInTable="columnNama_Perusahaan" msprop:Generator_UserColumnName="Nama_Perusahaan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Lokasi" msprop:Generator_ColumnPropNameInRow="Lokasi" msprop:Generator_ColumnPropNameInTable="LokasiColumn" msprop:Generator_ColumnVarNameInTable="columnLokasi" msprop:Generator_UserColumnName="Lokasi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Deskripsi" msprop:Generator_ColumnPropNameInRow="Deskripsi" msprop:Generator_ColumnPropNameInTable="DeskripsiColumn" msprop:Generator_ColumnVarNameInTable="columnDeskripsi" msprop:Generator_UserColumnName="Deskripsi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_Perusahaan" msprop:Generator_ColumnPropNameInRow="ID_Perusahaan" msprop:Generator_ColumnPropNameInTable="ID_PerusahaanColumn" msprop:Generator_ColumnVarNameInTable="columnID_Perusahaan" msprop:Generator_UserColumnName="ID_Perusahaan" type="xs:int" />
+              <xs:element name="Tampilan" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Tampilan" msprop:Generator_ColumnPropNameInTable="TampilanColumn" msprop:Generator_ColumnVarNameInTable="columnTampilan" msprop:Generator_UserColumnName="Tampilan" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="203" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_LowonganTersedia" />
+      <xs:field xpath="mstns:ID_Lowongan" />
+      <xs:field xpath="mstns:ID_Perusahaan" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
