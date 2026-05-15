@@ -31,8 +31,6 @@ namespace PABDUCP1
             string desa = txtDesa.Text.Trim();
             string kabupaten = txtKabupaten.Text.Trim();
 
-
-           
             if (nama == "" || email == "" || password == "" ||
                 jalan == "" || desa == "" || kabupaten == "")
             {
@@ -41,7 +39,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 2. Nama: hanya huruf dan spasi
             if (!Regex.IsMatch(nama, @"^[a-zA-Z\s]+$"))
             {
                 MessageBox.Show("Nama hanya boleh berisi huruf!", "Validasi",
@@ -49,7 +46,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 3. Email: harus mengandung '@' dan format dasar
             if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Format email tidak valid! Harus mengandung '@'.", "Validasi",
@@ -57,7 +53,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 4. Password minimal 8 karakter
             if (password.Length < 8)
             {
                 MessageBox.Show("Password minimal 8 karakter!", "Validasi",
@@ -65,7 +60,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // 5. Jalan, Desa, Kabupaten: tidak boleh angka saja (harus ada huruf)
             if (!Regex.IsMatch(jalan, @"[a-zA-Z]"))
             {
                 MessageBox.Show("Jalan tidak boleh berisi angka saja!", "Validasi",
@@ -87,7 +81,6 @@ namespace PABDUCP1
                 return;
             }
 
-            // ── Panggil Stored Procedure sp_RegisterUser ──────────────────
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
@@ -114,7 +107,6 @@ namespace PABDUCP1
             }
             catch (SqlException ex)
             {
-                // Pesan error dari RAISERROR di SP
                 MessageBox.Show(ex.Message, "Gagal Registrasi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
