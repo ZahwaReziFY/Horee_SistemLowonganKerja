@@ -11,13 +11,7 @@ using System.Data.SqlClient; //
 
 namespace PABDUCP1
 {
-    // ================================================================
-    // FormLowonganView — Tampilan lowongan untuk semua orang
-    //
-    // ⚠️  SENGAJA MENGANDUNG SQL INJECTION pada kolom pencarian
-    //     untuk tujuan demonstrasi / pembelajaran.
-    //     Lihat README_SQLInjection.md untuk skenario lengkap.
-    // ================================================================
+
     public partial class FormLowonganView : Form
     {
         private readonly string connStr =
@@ -39,7 +33,6 @@ namespace PABDUCP1
             LoadData();
         }
 
-        // ── Load semua lowongan dari VIEW ──────────────────────────────
         void LoadData()
         {
             try
@@ -67,9 +60,8 @@ namespace PABDUCP1
 
         private void btnCariVulnerable_Click(object sender, EventArgs e)
         {
-            string input = txtCari.Text; // ← TIDAK di-sanitasi, langsung pakai
+            string input = txtCari.Text; 
 
-            // ⚠️ BERBAHAYA: string concatenation langsung
             string queryVulnerable =
                 "SELECT * FROM vw_LowonganTersedia WHERE Posisi LIKE '%" + input + "%'";
 
@@ -96,10 +88,6 @@ namespace PABDUCP1
             }
         }
 
-        // ================================================================
-        // ✅  SAFE — Menggunakan Parameterized Query (cara yang benar)
-        //     Input dimasukkan sebagai parameter, bukan sambung string.
-        // ================================================================
         private void btnCariSafe_Click(object sender, EventArgs e)
         {
             try
@@ -109,7 +97,6 @@ namespace PABDUCP1
                     "SELECT * FROM vw_LowonganTersedia WHERE Posisi LIKE @cari OR Nama_Perusahaan LIKE @cari",
                     conn))
                 {
-                    // ✅ AMAN: input diperlakukan sebagai nilai, bukan bagian query
                     cmd.Parameters.AddWithValue("@cari", "%" + txtCari.Text + "%");
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -133,6 +120,36 @@ namespace PABDUCP1
             txtCari.Text = "";
             lblWarning.Text = "";
             LoadData();
+        }
+
+        private void btnCariSP_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand("sp_SearchLowongan", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Cari", txtCari.Text.Trim());
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    bindingSource.DataSource = dt;
+
+                    lblWarning.Text = "✅ Pencarian via Stored Procedure.";
+                    lblWarning.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
