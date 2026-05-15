@@ -11,11 +11,6 @@ using System.Data.SqlClient; //
 
 namespace PABDUCP1
 {
-    // ================================================================
-    // FormLamar — User melamar lowongan
-    // Fitur: DataGridView + BindingSource + BindingNavigator
-    //        Klik baris → isi textbox otomatis
-    // ================================================================
     public partial class FormLamar : Form
     {
         private readonly string connStr =
@@ -27,6 +22,8 @@ namespace PABDUCP1
         public FormLamar()
         {
             InitializeComponent();
+
+            bindingSource = vwLowonganTersediaBindingSource;
         }
 
         private void FormLamar_Load(object sender, EventArgs e)
@@ -50,7 +47,6 @@ namespace PABDUCP1
             LoadLowongan();
         }
 
-        // ── Load lowongan yang belum dilamar user ini ──────────────────
         void LoadLowongan()
         {
             try
@@ -91,7 +87,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── Sync textbox saat Navigator bergerak ───────────────────────
         private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
             if (bindingSource.Current == null) return;
@@ -102,14 +97,12 @@ namespace PABDUCP1
             txtLokasi.Text = row["Lokasi"]?.ToString();
         }
 
-        // ── Klik baris grid → sync posisi Navigator ────────────────────
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             bindingSource.Position = e.RowIndex; // trigger CurrentChanged otomatis
         }
 
-        // ── LAMAR via sp_InsertLamaran ──────────────────────────────────
         private void btnLamar_Click(object sender, EventArgs e)
         {
             if (selectedIDLowongan == 0)
@@ -146,7 +139,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── Refresh lowongan ───────────────────────────────────────────
         private void btnTampilkan_Click(object sender, EventArgs e)
         {
             LoadLowongan();
@@ -159,6 +151,11 @@ namespace PABDUCP1
             txtPosisi.Text = "";
             txtPerusahaan.Text = "";
             txtLokasi.Text = "";
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close(); 
         }
     }
 }
