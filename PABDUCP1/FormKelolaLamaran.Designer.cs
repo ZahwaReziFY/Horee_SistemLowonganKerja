@@ -34,30 +34,31 @@
             this.btnAcc = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIDLamaran = new System.Windows.Forms.TextBox();
+            this.lamaranBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sistemLowonganDBDataSet1 = new PABDUCP1.SistemLowonganDBDataSet1();
             this.btnPending = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.sistemLowonganDBDataSet1 = new PABDUCP1.SistemLowonganDBDataSet1();
-            this.lamaranBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lamaranTableAdapter = new PABDUCP1.SistemLowonganDBDataSet1TableAdapters.LamaranTableAdapter();
+            this.btnBack = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.lamaranBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lamaranBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnTolak
@@ -98,10 +99,20 @@
             // txtIDLamaran
             // 
             this.txtIDLamaran.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lamaranBindingSource, "ID_User", true));
-            this.txtIDLamaran.Location = new System.Drawing.Point(403, 332);
+            this.txtIDLamaran.Location = new System.Drawing.Point(368, 332);
             this.txtIDLamaran.Name = "txtIDLamaran";
-            this.txtIDLamaran.Size = new System.Drawing.Size(141, 22);
+            this.txtIDLamaran.Size = new System.Drawing.Size(98, 22);
             this.txtIDLamaran.TabIndex = 4;
+            // 
+            // lamaranBindingSource
+            // 
+            this.lamaranBindingSource.DataMember = "Lamaran";
+            this.lamaranBindingSource.DataSource = this.sistemLowonganDBDataSet1;
+            // 
+            // sistemLowonganDBDataSet1
+            // 
+            this.sistemLowonganDBDataSet1.DataSetName = "SistemLowonganDBDataSet1";
+            this.sistemLowonganDBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnPending
             // 
@@ -183,6 +194,31 @@
             this.bindingNavigator1.TabIndex = 9;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -216,16 +252,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -248,40 +277,24 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // sistemLowonganDBDataSet1
-            // 
-            this.sistemLowonganDBDataSet1.DataSetName = "SistemLowonganDBDataSet1";
-            this.sistemLowonganDBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // lamaranBindingSource
-            // 
-            this.lamaranBindingSource.DataMember = "Lamaran";
-            this.lamaranBindingSource.DataSource = this.sistemLowonganDBDataSet1;
             // 
             // lamaranTableAdapter
             // 
             this.lamaranTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.IndianRed;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(12, 412);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(89, 35);
+            this.btnBack.TabIndex = 10;
+            this.btnBack.Text = "BACK";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // FormKelolaLamaran
             // 
@@ -289,6 +302,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
@@ -300,13 +314,12 @@
             this.Controls.Add(this.btnTolak);
             this.Name = "FormKelolaLamaran";
             this.Text = "FormLamaran";
-            this.Load += new System.EventHandler(this.FormKelolaLamaran_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.lamaranBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lamaranBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,5 +349,6 @@
         private SistemLowonganDBDataSet1 sistemLowonganDBDataSet1;
         private System.Windows.Forms.BindingSource lamaranBindingSource;
         private SistemLowonganDBDataSet1TableAdapters.LamaranTableAdapter lamaranTableAdapter;
+        private System.Windows.Forms.Button btnBack;
     }
 }

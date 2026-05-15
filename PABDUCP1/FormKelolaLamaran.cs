@@ -11,10 +11,6 @@ using System.Windows.Forms;//
 
 namespace PABDUCP1
 {
-    // ================================================================
-    // FormKelolaLamaran — Perusahaan kelola lamaran masuk
-    // Fitur: BindingSource + BindingNavigator, warna status, SP update
-    // ================================================================
     public partial class FormKelolaLamaran : Form
     {
         private readonly string connStr =
@@ -50,7 +46,6 @@ namespace PABDUCP1
             LoadData();
         }
 
-        // ── Load dari VIEW vw_SemuaLamaran ─────────────────────────────
         void LoadData()
         {
             try
@@ -85,7 +80,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── Warnai baris berdasarkan Status ───────────────────────────
         void WarnaiStatus()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -98,7 +92,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── Sync txtIDLamaran saat Navigator bergerak ──────────────────
         private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
             if (bindingSource.Current == null) return;
@@ -106,14 +99,12 @@ namespace PABDUCP1
             txtIDLamaran.Text = row["ID_Lamaran"]?.ToString();
         }
 
-        // ── Klik baris grid ────────────────────────────────────────────
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             bindingSource.Position = e.RowIndex; // sync Navigator
         }
 
-        // ── Tombol ACC / Tolak / Pending ──────────────────────────────
         private void btnAcc_Click(object sender, EventArgs e) => UpdateStatus("Diterima");
         private void btnTolak_Click(object sender, EventArgs e) => UpdateStatus("Ditolak");
         private void btnPending_Click(object sender, EventArgs e) => UpdateStatus("Pending");
@@ -150,13 +141,11 @@ namespace PABDUCP1
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e) => LoadData();
-
-        private void FormKelolaLamaran_Load_1(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'sistemLowonganDBDataSet1.Lamaran' table. You can move, or remove it, as needed.
-            this.lamaranTableAdapter.Fill(this.sistemLowonganDBDataSet1.Lamaran);
-
+            this.Close(); 
         }
-    }
+
+        private void btnRefresh_Click(object sender, EventArgs e) => LoadData();
+    }//
 }
