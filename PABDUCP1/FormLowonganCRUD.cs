@@ -16,7 +16,6 @@ namespace PABDUCP1
         private readonly string connStr =
             "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
 
-        // BindingSource menghubungkan DataTable ke DataGridView & Navigator
         private BindingSource bindingSource = new BindingSource();
 
         public FormLowonganCRUD()
@@ -45,7 +44,6 @@ namespace PABDUCP1
             LoadData();
         }
 
-        // ── Load data dari VIEW vw_LowonganPerusahaan ─────────────────
         void LoadData()
         {
             try
@@ -80,7 +78,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── Klik baris → isi textbox ───────────────────────────────────
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -91,7 +88,6 @@ namespace PABDUCP1
             txtLokasi.Text = row.Cells["Lokasi"].Value?.ToString();
         }
 
-        // ── BindingSource CurrentChanged: navigasi via Navigator ──────
         private void lowonganBindingSource_CurrentChanged(object sender, EventArgs e)
         {
             if (lowonganBindingSource.Current == null) return;
@@ -102,7 +98,6 @@ namespace PABDUCP1
             txtLokasi.Text = row["Lokasi"]?.ToString();
         }
 
-        // ── INSERT via sp_InsertLowongan ───────────────────────────────
         private void btnInsert_Click(object sender, EventArgs e)
         {
             if (txtPosisi.Text.Trim() == "" || txtDeskripsi.Text.Trim() == "" ||
@@ -137,7 +132,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── UPDATE via sp_UpdateLowongan ───────────────────────────────
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (txtIDLowongan.Text.Trim() == "")
@@ -172,7 +166,6 @@ namespace PABDUCP1
             }
         }
 
-        // ── DELETE via sp_DeleteLowongan ───────────────────────────────
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (txtIDLowongan.Text.Trim() == "")
@@ -217,14 +210,17 @@ namespace PABDUCP1
             txtLokasi.Text = "";
         }
 
-        private void FormLowonganCRUD_Load_1(object sender, EventArgs e)
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            // TODO: This line of code loads data into the 'sistemLowonganDBDataSet.Lowongan' table. You can move, or remove it, as needed.
-            this.lowonganTableAdapter.Fill(this.sistemLowonganDBDataSet.Lowongan);
 
         }
 
-        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -58,6 +58,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.lowonganTableAdapter = new PABDUCP1.SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lowonganBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -71,7 +72,7 @@
             this.txtIDLowongan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lowonganBindingSource, "ID_Lowongan", true));
             this.txtIDLowongan.Location = new System.Drawing.Point(181, 37);
             this.txtIDLowongan.Name = "txtIDLowongan";
-            this.txtIDLowongan.Size = new System.Drawing.Size(160, 22);
+            this.txtIDLowongan.Size = new System.Drawing.Size(42, 22);
             this.txtIDLowongan.TabIndex = 0;
             // 
             // lowonganBindingSource
@@ -91,16 +92,16 @@
             this.txtPosisi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lowonganBindingSource, "Posisi", true));
             this.txtPosisi.Location = new System.Drawing.Point(181, 79);
             this.txtPosisi.Name = "txtPosisi";
-            this.txtPosisi.Size = new System.Drawing.Size(160, 22);
+            this.txtPosisi.Size = new System.Drawing.Size(310, 22);
             this.txtPosisi.TabIndex = 1;
             // 
             // txtDeskripsi
             // 
             this.txtDeskripsi.BackColor = System.Drawing.Color.Azure;
             this.txtDeskripsi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lowonganBindingSource, "Deskripsi", true));
-            this.txtDeskripsi.Location = new System.Drawing.Point(181, 121);
+            this.txtDeskripsi.Location = new System.Drawing.Point(181, 119);
             this.txtDeskripsi.Name = "txtDeskripsi";
-            this.txtDeskripsi.Size = new System.Drawing.Size(160, 22);
+            this.txtDeskripsi.Size = new System.Drawing.Size(310, 22);
             this.txtDeskripsi.TabIndex = 2;
             // 
             // dataGridView1
@@ -108,12 +109,13 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.Sienna;
-            this.dataGridView1.Location = new System.Drawing.Point(54, 240);
+            this.dataGridView1.Location = new System.Drawing.Point(54, 202);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(684, 198);
+            this.dataGridView1.Size = new System.Drawing.Size(684, 200);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // btnLoad
@@ -203,7 +205,7 @@
             this.txtLokasi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lowonganBindingSource, "Lokasi", true));
             this.txtLokasi.Location = new System.Drawing.Point(181, 160);
             this.txtLokasi.Name = "txtLokasi";
-            this.txtLokasi.Size = new System.Drawing.Size(160, 22);
+            this.txtLokasi.Size = new System.Drawing.Size(148, 22);
             this.txtLokasi.TabIndex = 11;
             // 
             // label4
@@ -243,7 +245,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(800, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(800, 27);
             this.bindingNavigator1.TabIndex = 13;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -253,7 +255,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
@@ -338,12 +340,25 @@
             // 
             this.lowonganTableAdapter.ClearBeforeFill = true;
             // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.IndianRed;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(0, 418);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(92, 31);
+            this.btnBack.TabIndex = 14;
+            this.btnBack.Text = "BACK";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // FormLowonganCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtLokasi);
@@ -360,7 +375,6 @@
             this.Controls.Add(this.txtIDLowongan);
             this.Name = "FormLowonganCRUD";
             this.Text = "FormLowonganCRUD";
-            this.Load += new System.EventHandler(this.FormLowonganCRUD_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.lowonganBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -402,5 +416,6 @@
         private SistemLowonganDBDataSet sistemLowonganDBDataSet;
         private System.Windows.Forms.BindingSource lowonganBindingSource;
         private SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter lowonganTableAdapter;
+        private System.Windows.Forms.Button btnBack;
     }
 }
