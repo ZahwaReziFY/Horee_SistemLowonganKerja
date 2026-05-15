@@ -106,12 +106,6 @@
     <Compile Include="FormUser.Designer.cs">
       <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUserCRUD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormUserCRUD.Designer.cs">
-      <DependentUpon>FormUserCRUD.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SistemLowonganDBDataSet.Designer.cs">
@@ -129,20 +123,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SistemLowonganDBDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SistemLowonganDBDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemLowonganDBDataSet3.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormKelolaLamaran.resx">
       <DependentUpon>FormKelolaLamaran.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLamar.resx">
       <DependentUpon>FormLamar.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLowonganCRUD.resx">
       <DependentUpon>FormLowonganCRUD.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLowonganView.resx">
       <DependentUpon>FormLowonganView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPerusahaan.resx">
       <DependentUpon>FormPerusahaan.cs</DependentUpon>
@@ -155,12 +158,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStatusLamaran.resx">
       <DependentUpon>FormStatusLamaran.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUser.resx">
       <DependentUpon>FormUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUserCRUD.resx">
-      <DependentUpon>FormUserCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -213,6 +214,17 @@
     </None>
     <None Include="SistemLowonganDBDataSet2.xss">
       <DependentUpon>SistemLowonganDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet3.xsc">
+      <DependentUpon>SistemLowonganDBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="SistemLowonganDBDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemLowonganDBDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemLowonganDBDataSet3.xss">
+      <DependentUpon>SistemLowonganDBDataSet3.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
