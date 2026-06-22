@@ -33,33 +33,32 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.txtCari = new System.Windows.Forms.TextBox();
-            this.lblWarning = new System.Windows.Forms.Label();
-            this.sistemLowonganDBDataSet3 = new PABDUCP1.SistemLowonganDBDataSet3();
             this.vwLowonganTersediaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sistemLowonganDBDataSet3 = new PABDUCP1.SistemLowonganDBDataSet3();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.vw_LowonganTersediaTableAdapter = new PABDUCP1.SistemLowonganDBDataSet3TableAdapters.vw_LowonganTersediaTableAdapter();
             this.lblCari = new System.Windows.Forms.Label();
             this.btnCariSP = new System.Windows.Forms.Button();
-            this.btnCariVulnerable = new System.Windows.Forms.Button();
             this.btnCariSafe = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwLowonganTersediaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet3)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -114,6 +113,31 @@
             this.bindingNavigator1.TabIndex = 2;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -147,16 +171,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -179,26 +196,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // txtCari
             // 
@@ -208,6 +207,16 @@
             this.txtCari.Size = new System.Drawing.Size(100, 22);
             this.txtCari.TabIndex = 3;
             // 
+            // vwLowonganTersediaBindingSource
+            // 
+            this.vwLowonganTersediaBindingSource.DataMember = "vw_LowonganTersedia";
+            this.vwLowonganTersediaBindingSource.DataSource = this.sistemLowonganDBDataSet3;
+            // 
+            // sistemLowonganDBDataSet3
+            // 
+            this.sistemLowonganDBDataSet3.DataSetName = "SistemLowonganDBDataSet3";
+            this.sistemLowonganDBDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // lblWarning
             // 
             this.lblWarning.AutoSize = true;
@@ -215,16 +224,6 @@
             this.lblWarning.Name = "lblWarning";
             this.lblWarning.Size = new System.Drawing.Size(0, 16);
             this.lblWarning.TabIndex = 4;
-            // 
-            // sistemLowonganDBDataSet3
-            // 
-            this.sistemLowonganDBDataSet3.DataSetName = "SistemLowonganDBDataSet3";
-            this.sistemLowonganDBDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vwLowonganTersediaBindingSource
-            // 
-            this.vwLowonganTersediaBindingSource.DataMember = "vw_LowonganTersedia";
-            this.vwLowonganTersediaBindingSource.DataSource = this.sistemLowonganDBDataSet3;
             // 
             // vw_LowonganTersediaTableAdapter
             // 
@@ -249,19 +248,9 @@
             this.btnCariSP.UseVisualStyleBackColor = true;
             this.btnCariSP.Click += new System.EventHandler(this.btnCariSP_Click);
             // 
-            // btnCariVulnerable
-            // 
-            this.btnCariVulnerable.Location = new System.Drawing.Point(577, 314);
-            this.btnCariVulnerable.Name = "btnCariVulnerable";
-            this.btnCariVulnerable.Size = new System.Drawing.Size(105, 23);
-            this.btnCariVulnerable.TabIndex = 7;
-            this.btnCariVulnerable.Text = "Test Injeksi";
-            this.btnCariVulnerable.UseVisualStyleBackColor = true;
-            this.btnCariVulnerable.Click += new System.EventHandler(this.btnCariVulnerable_Click);
-            // 
             // btnCariSafe
             // 
-            this.btnCariSafe.Location = new System.Drawing.Point(407, 368);
+            this.btnCariSafe.Location = new System.Drawing.Point(546, 316);
             this.btnCariSafe.Name = "btnCariSafe";
             this.btnCariSafe.Size = new System.Drawing.Size(75, 23);
             this.btnCariSafe.TabIndex = 8;
@@ -271,7 +260,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(577, 368);
+            this.btnReset.Location = new System.Drawing.Point(461, 369);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(105, 23);
             this.btnReset.TabIndex = 9;
@@ -300,7 +289,6 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnCariSafe);
-            this.Controls.Add(this.btnCariVulnerable);
             this.Controls.Add(this.btnCariSP);
             this.Controls.Add(this.lblCari);
             this.Controls.Add(this.lblWarning);
@@ -315,8 +303,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwLowonganTersediaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,7 +333,6 @@
         private SistemLowonganDBDataSet3TableAdapters.vw_LowonganTersediaTableAdapter vw_LowonganTersediaTableAdapter;
         private System.Windows.Forms.Label lblCari;
         private System.Windows.Forms.Button btnCariSP;
-        private System.Windows.Forms.Button btnCariVulnerable;
         private System.Windows.Forms.Button btnCariSafe;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnBack;

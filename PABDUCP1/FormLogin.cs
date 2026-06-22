@@ -106,5 +106,37 @@ namespace PABDUCP1
             new FormRegisterPerusahaan().Show();
             this.Hide();
         }
+
+        private void btnTestInjection_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text;
+            string query = "SELECT ID_User, Email FROM Users WHERE Email='" + username + "'";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        currentUserID = Convert.ToInt32(rd["ID_User"]);
+                        currentRole = "User";
+                        MessageBox.Show("Login berhasil!");
+                        new FormUser().Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                        "Injection gagal");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

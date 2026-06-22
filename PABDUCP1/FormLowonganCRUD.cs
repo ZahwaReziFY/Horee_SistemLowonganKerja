@@ -220,6 +220,12 @@ namespace PABDUCP1
             this.Close();
         }
 
+        private void btnRekapData_Click(object sender, EventArgs e)
+        {
+            FormRekapData frm = new FormRekapData();
+            frm.Show();
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

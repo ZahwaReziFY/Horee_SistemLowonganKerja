@@ -1,3 +1,9 @@
 <Solution>
-  <Project Path="D:/PABD/PABDUCP/PABDUCP1/VS/PABDUCP1/PABDUCP1/PABDUCP1.csproj" Id="a67aa601-2111-41f5-a5c5-9d8fa1945595" />
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="D:/PABD/PABDUCP/PABDUCP1/VS/PABDUCP1/PABDUCP1/PABDUCP1.csproj" Id="a67aa601-2111-41f5-a5c5-9d8fa1945595">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
 </Solution>

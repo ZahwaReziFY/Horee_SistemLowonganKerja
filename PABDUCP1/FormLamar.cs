@@ -11,7 +11,7 @@ using System.Data.SqlClient; //
 
 namespace PABDUCP1
 {
-    public partial class FormLamar : Form
+    public partial class  FormLamar : Form
     {
         private readonly string connStr =
             "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
@@ -41,7 +41,7 @@ namespace PABDUCP1
             if (bindingNavigatorAddNewItem != null) bindingNavigatorAddNewItem.Enabled = false;
             if (bindingNavigatorDeleteItem != null) bindingNavigatorDeleteItem.Enabled = false;
 
-            // Sync textbox saat navigator bergerak
+            bindingSource.CurrentChanged -= BindingSource_CurrentChanged;
             bindingSource.CurrentChanged += BindingSource_CurrentChanged;
 
             LoadLowongan();
@@ -67,6 +67,9 @@ namespace PABDUCP1
 
                     bindingSource.DataSource = dt;
                     dataGridView1.DataSource = bindingSource;
+                    dataGridView1.SelectionMode =
+                    DataGridViewSelectionMode.FullRowSelect;
+                    dataGridView1.MultiSelect = false;
                     dataGridView1.ReadOnly = true;
                     dataGridView1.AllowUserToAddRows = false;
                     dataGridView1.AllowUserToDeleteRows = false;
@@ -74,10 +77,11 @@ namespace PABDUCP1
 
                     if (dataGridView1.Columns.Contains("ID_Lowongan"))
                         dataGridView1.Columns["ID_Lowongan"].Visible = false;
-
-                    // Reset pilihan
-                    selectedIDLowongan = 0;
-                    ClearFields();
+                    if (dataGridView1.Rows.Count == 0)
+                    {
+                        selectedIDLowongan = 0;
+                        ClearFields();
+                    }
                 }
             }
             catch (Exception ex)
@@ -90,17 +94,28 @@ namespace PABDUCP1
         private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
             if (bindingSource.Current == null) return;
-            DataRowView row = (DataRowView)bindingSource.Current;
-            selectedIDLowongan = Convert.ToInt32(row["ID_Lowongan"]);
-            txtPosisi.Text = row["Posisi"]?.ToString();
-            txtPerusahaan.Text = row["Nama_Perusahaan"]?.ToString();
-            txtLokasi.Text = row["Lokasi"]?.ToString();
+            DataRowView row = bindingSource.Current as DataRowView;
+
+            if (row != null)
+            {
+                selectedIDLowongan =Convert.ToInt32(row["ID_Lowongan"]);
+                txtPosisi.Text = row["Posisi"].ToString();
+                txtPerusahaan.Text = row["Nama_Perusahaan"].ToString();
+                txtLokasi.Text = row["Lokasi"].ToString();
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-            bindingSource.Position = e.RowIndex; // trigger CurrentChanged otomatis
+            if (e.RowIndex < 0)
+                return;
+
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            bindingSource.Position = e.RowIndex;
+            selectedIDLowongan = Convert.ToInt32(row.Cells["ID_Lowongan"].Value);
+            txtPosisi.Text = row.Cells["Posisi"].Value.ToString();
+            txtPerusahaan.Text = row.Cells["Nama_Perusahaan"].Value.ToString();
+            txtLokasi.Text = row.Cells["Lokasi"].Value.ToString();
         }
 
         private void btnLamar_Click(object sender, EventArgs e)
@@ -125,7 +140,7 @@ namespace PABDUCP1
                 }
                 MessageBox.Show("Lamaran berhasil dikirim! Status: Pending.", "Sukses",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                LoadLowongan();
             }
             catch (SqlException ex)
             {

@@ -58,60 +58,32 @@ namespace PABDUCP1
             }
         }
 
-        private void btnCariVulnerable_Click(object sender, EventArgs e)
-        {
-            string input = txtCari.Text; 
-
-            string queryVulnerable =
-                "SELECT * FROM vw_LowonganTersedia WHERE Posisi LIKE '%" + input + "%'";
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connStr))
-                using (SqlDataAdapter da = new SqlDataAdapter(queryVulnerable, conn))
-                {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    bindingSource.DataSource = dt;
-
-                    // Tampilkan peringatan demo
-                    lblWarning.Text = "⚠️ Mode VULNERABLE aktif! Query: " + queryVulnerable;
-                    lblWarning.ForeColor = System.Drawing.Color.Red;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Jika query rusak karena injeksi, error akan muncul di sini
-                MessageBox.Show("SQL Error (mungkin karena injeksi): " + ex.Message,
-                    "SQL Injection Detected!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lblWarning.Text = "Error: " + ex.Message;
-            }
-        }
-
         private void btnCariSafe_Click(object sender, EventArgs e)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
-                using (SqlCommand cmd = new SqlCommand(
-                    "SELECT * FROM vw_LowonganTersedia WHERE Posisi LIKE @cari OR Nama_Perusahaan LIKE @cari",
-                    conn))
+                using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM vw_LowonganTersedia WHERE Posisi LIKE @cari OR Nama_Perusahaan LIKE @cari",conn))
                 {
-                    cmd.Parameters.AddWithValue("@cari", "%" + txtCari.Text + "%");
+                    cmd.Parameters.Add("@cari",
+                    SqlDbType.VarChar, 100)
+                    .Value =
+                    "%" + txtCari.Text.Trim() + "%";
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     bindingSource.DataSource = dt;
 
-                    lblWarning.Text = "✅ Mode SAFE aktif — parameterized query digunakan.";
-                    lblWarning.ForeColor = System.Drawing.Color.Green;
+                    lblWarning.Text = "✅ SAFE : Parameterized Query";
+
+                    lblWarning.ForeColor =
+                    Color.Green;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
         }
 

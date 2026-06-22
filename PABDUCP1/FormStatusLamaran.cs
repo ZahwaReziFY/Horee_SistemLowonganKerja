@@ -49,8 +49,7 @@ namespace PABDUCP1
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
                 using (SqlCommand cmd = new SqlCommand(
-                    // ✅ Pakai VIEW vw_SemuaLamaran
-                    "SELECT ID_Lamaran, Posisi, Nama_Perusahaan, Lokasi, TanggalLamaran, Status " +
+                    "SELECT ID_Lamaran, Posisi, Nama_Perusahaan, TanggalLamaran, Status " +
                     "FROM vw_SemuaLamaran WHERE ID_User = @uid ORDER BY TanggalLamaran DESC", conn))
                 {
                     cmd.Parameters.AddWithValue("@uid", FormLogin.currentUserID);

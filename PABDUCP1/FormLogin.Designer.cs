@@ -37,6 +37,7 @@
             this.btnRegisterUser = new System.Windows.Forms.Button();
             this.btnRegisterPerusahaan = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnTestInjection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,12 +140,23 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // btnTestInjection
+            // 
+            this.btnTestInjection.Location = new System.Drawing.Point(519, 319);
+            this.btnTestInjection.Name = "btnTestInjection";
+            this.btnTestInjection.Size = new System.Drawing.Size(75, 23);
+            this.btnTestInjection.TabIndex = 12;
+            this.btnTestInjection.Text = "button1";
+            this.btnTestInjection.UseVisualStyleBackColor = true;
+            this.btnTestInjection.Click += new System.EventHandler(this.btnTestInjection_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTestInjection);
             this.Controls.Add(this.btnRegisterPerusahaan);
             this.Controls.Add(this.btnRegisterUser);
             this.Controls.Add(this.pictureBox1);
@@ -173,5 +185,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegisterUser;
         private System.Windows.Forms.Button btnRegisterPerusahaan;
+        private System.Windows.Forms.Button btnTestInjection;
     }
 }

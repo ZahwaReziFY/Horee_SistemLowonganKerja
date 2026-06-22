@@ -35,12 +35,10 @@ namespace PABDUCP1
 
             this.Text = "Kelola Lamaran";
 
-            // Hubungkan Navigator ke BindingSource
             bindingNavigator1.BindingSource = bindingSource;
             if (bindingNavigatorAddNewItem != null) bindingNavigatorAddNewItem.Enabled = false;
             if (bindingNavigatorDeleteItem != null) bindingNavigatorDeleteItem.Enabled = false;
 
-            // Sync txtIDLamaran saat navigator bergerak
             bindingSource.CurrentChanged += BindingSource_CurrentChanged;
 
             LoadData();
@@ -62,6 +60,8 @@ namespace PABDUCP1
 
                     bindingSource.DataSource = dt;
                     dataGridView1.DataSource = bindingSource;
+                    dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dataGridView1.MultiSelect = false;
                     dataGridView1.ReadOnly = true;
                     dataGridView1.AllowUserToAddRows = false;
                     dataGridView1.AllowUserToDeleteRows = false;
@@ -94,17 +94,22 @@ namespace PABDUCP1
 
         private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            if (bindingSource.Current == null) return;
-            DataRowView row = (DataRowView)bindingSource.Current;
-            txtIDLamaran.Text = row["ID_Lamaran"]?.ToString();
+            if (bindingSource.Current == null)
+                return;
+            DataRowView row = bindingSource.Current as DataRowView;
+            if (row != null)
+            {
+                txtIDLamaran.Text = row["ID_Lamaran"].ToString();
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            bindingSource.Position = e.RowIndex; // sync Navigator
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            bindingSource.Position = e.RowIndex;
+            txtIDLamaran.Text = row.Cells["ID_Lamaran"].Value.ToString();
         }
-
         private void btnAcc_Click(object sender, EventArgs e) => UpdateStatus("Diterima");
         private void btnTolak_Click(object sender, EventArgs e) => UpdateStatus("Ditolak");
         private void btnPending_Click(object sender, EventArgs e) => UpdateStatus("Pending");
@@ -132,7 +137,17 @@ namespace PABDUCP1
                 MessageBox.Show("Status berhasil diubah ke: " + status, "Sukses",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
-                txtIDLamaran.Text = "";
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells["ID_Lamaran"].Value.ToString()
+                       == txtIDLamaran.Text)
+                    {
+                        row.Selected = true;
+                        dataGridView1.CurrentCell =
+                        row.Cells[1];
+                        break;
+                    }
+                }
             }
             catch (SqlException ex)
             {

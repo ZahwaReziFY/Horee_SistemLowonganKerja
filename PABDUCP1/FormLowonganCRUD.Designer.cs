@@ -59,6 +59,7 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.lowonganTableAdapter = new PABDUCP1.SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnRekapData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lowonganBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -109,10 +110,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.Sienna;
-            this.dataGridView1.Location = new System.Drawing.Point(54, 202);
+            this.dataGridView1.Location = new System.Drawing.Point(54, 243);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(684, 200);
+            this.dataGridView1.Size = new System.Drawing.Size(684, 159);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -352,12 +353,25 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnRekapData
+            // 
+            this.btnRekapData.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnRekapData.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRekapData.Location = new System.Drawing.Point(570, 202);
+            this.btnRekapData.Name = "btnRekapData";
+            this.btnRekapData.Size = new System.Drawing.Size(168, 36);
+            this.btnRekapData.TabIndex = 15;
+            this.btnRekapData.Text = "Rekap Data";
+            this.btnRekapData.UseVisualStyleBackColor = false;
+            this.btnRekapData.Click += new System.EventHandler(this.btnRekapData_Click);
+            // 
             // FormLowonganCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRekapData);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label4);
@@ -417,5 +431,6 @@
         private System.Windows.Forms.BindingSource lowonganBindingSource;
         private SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter lowonganTableAdapter;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnRekapData;
     }
 }
