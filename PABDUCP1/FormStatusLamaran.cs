@@ -13,8 +13,7 @@ namespace PABDUCP1
 {
     public partial class FormStatusLamaran : Form
     {
-        private readonly string connStr =
-            "Data Source=WAWAAA\\ZAHWA;Initial Catalog=SistemLowonganDB;Integrated Security=True";
+        string connStr = "Server=tcp:serverpabdwawa.database.windows.net,1433;Initial Catalog=SistemLowonganDB;User ID=zahwarzfy;Password=Zahwaa04;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public FormStatusLamaran()
         {

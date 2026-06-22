@@ -142,12 +142,13 @@
             // 
             // btnTestInjection
             // 
-            this.btnTestInjection.Location = new System.Drawing.Point(519, 319);
+            this.btnTestInjection.BackColor = System.Drawing.Color.Red;
+            this.btnTestInjection.Location = new System.Drawing.Point(643, 393);
             this.btnTestInjection.Name = "btnTestInjection";
-            this.btnTestInjection.Size = new System.Drawing.Size(75, 23);
+            this.btnTestInjection.Size = new System.Drawing.Size(125, 23);
             this.btnTestInjection.TabIndex = 12;
-            this.btnTestInjection.Text = "button1";
-            this.btnTestInjection.UseVisualStyleBackColor = true;
+            this.btnTestInjection.Text = "Test Inject";
+            this.btnTestInjection.UseVisualStyleBackColor = false;
             this.btnTestInjection.Click += new System.EventHandler(this.btnTestInjection_Click);
             // 
             // FormLogin
