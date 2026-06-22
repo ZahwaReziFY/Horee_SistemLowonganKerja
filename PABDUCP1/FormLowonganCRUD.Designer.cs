@@ -57,9 +57,11 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.lowonganTableAdapter = new PABDUCP1.SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnRekapData = new System.Windows.Forms.Button();
+            this.lowonganTableAdapter = new PABDUCP1.SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter();
+            this.btnImpDB = new System.Windows.Forms.Button();
+            this.btnImpExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lowonganBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sistemLowonganDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -116,7 +118,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(684, 159);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // btnLoad
@@ -337,10 +338,6 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
-            // lowonganTableAdapter
-            // 
-            this.lowonganTableAdapter.ClearBeforeFill = true;
-            // 
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.IndianRed;
@@ -365,12 +362,42 @@
             this.btnRekapData.UseVisualStyleBackColor = false;
             this.btnRekapData.Click += new System.EventHandler(this.btnRekapData_Click);
             // 
+            // lowonganTableAdapter
+            // 
+            this.lowonganTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnImpDB
+            // 
+            this.btnImpDB.BackColor = System.Drawing.Color.Lavender;
+            this.btnImpDB.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImpDB.Location = new System.Drawing.Point(379, 163);
+            this.btnImpDB.Name = "btnImpDB";
+            this.btnImpDB.Size = new System.Drawing.Size(168, 36);
+            this.btnImpDB.TabIndex = 16;
+            this.btnImpDB.Text = "Import Database";
+            this.btnImpDB.UseVisualStyleBackColor = false;
+            this.btnImpDB.Click += new System.EventHandler(this.btnImpDb_Click);
+            // 
+            // btnImpExcel
+            // 
+            this.btnImpExcel.BackColor = System.Drawing.Color.Lavender;
+            this.btnImpExcel.Font = new System.Drawing.Font("Sans Serif Collection", 7.799999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImpExcel.Location = new System.Drawing.Point(379, 201);
+            this.btnImpExcel.Name = "btnImpExcel";
+            this.btnImpExcel.Size = new System.Drawing.Size(168, 36);
+            this.btnImpExcel.TabIndex = 17;
+            this.btnImpExcel.Text = "Import Excel";
+            this.btnImpExcel.UseVisualStyleBackColor = false;
+            this.btnImpExcel.Click += new System.EventHandler(this.btnImpExcel_Click);
+            // 
             // FormLowonganCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnImpExcel);
+            this.Controls.Add(this.btnImpDB);
             this.Controls.Add(this.btnRekapData);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.bindingNavigator1);
@@ -432,5 +459,7 @@
         private SistemLowonganDBDataSetTableAdapters.LowonganTableAdapter lowonganTableAdapter;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnRekapData;
+        private System.Windows.Forms.Button btnImpDB;
+        private System.Windows.Forms.Button btnImpExcel;
     }
 }

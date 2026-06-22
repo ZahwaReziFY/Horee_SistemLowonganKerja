@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using ExcelDataReader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; //
+using System.Windows.Forms; 
 
 namespace PABDUCP1
 {
@@ -226,9 +228,117 @@ namespace PABDUCP1
             frm.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnImpDb_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DataTable dt = (DataTable)dataGridView1.DataSource;
 
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Tidak ada data untuk diimport.");
+                    return;
+                }
+
+                int sukses = 0;
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string posisi = row["Posisi"].ToString().Trim();
+                        string deskripsi = row["Deskripsi"].ToString().Trim();
+                        string lokasi = row["Lokasi"].ToString().Trim();
+
+                        if (string.IsNullOrEmpty(posisi) ||
+                            string.IsNullOrEmpty(deskripsi) ||
+                            string.IsNullOrEmpty(lokasi))
+                            continue;
+
+                        using (SqlCommand cmd = new SqlCommand("sp_InsertLowongan", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@ID_Perusahaan", FormLogin.currentPerusahaanID);
+                            cmd.Parameters.AddWithValue("@Posisi", posisi);
+                            cmd.Parameters.AddWithValue("@Deskripsi", deskripsi);
+                            cmd.Parameters.AddWithValue("@Lokasi", lokasi);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        sukses++;
+                    }
+                }
+
+                MessageBox.Show(sukses + " data lowongan berhasil diimport!",
+                    "Sukses",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                dataGridView1.Enabled = true;
+
+                btnInsert.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                btnLoad.Enabled = true;
+
+                LoadData();
+                ClearFields();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("General Error: " + ex.Message);
+            }
+        }
+
+        private void btnImpExcel_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                Filter = "Excel Workbook|*.xlsx"
+            })
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var reader = ExcelReaderFactory.CreateReader(stream))
+                        {
+                            var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                            {
+                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                {
+                                    UseHeaderRow = true
+                                }
+                            });
+
+                            DataTable dt = result.Tables[0];
+
+                            dataGridView1.DataSource = dt;
+                            dataGridView1.Enabled = false;
+
+                            btnInsert.Enabled = false;
+                            btnUpdate.Enabled = false;
+                            btnDelete.Enabled = false;
+                            btnLoad.Enabled = false;
+
+                            MessageBox.Show("Data Excel berhasil dimuat!",
+                                "Sukses",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
         }
     }
 }
